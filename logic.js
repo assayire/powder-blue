@@ -9,8 +9,8 @@ class Bsky {
   async createSession() {
     const response = await fetch(`${Bsky.BSKY_URL}/com.atproto.server.createSession`, {
       method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({identifier: this.identifier, password: this.password}),
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ identifier: this.identifier, password: this.password }),
     });
 
     if (!response.ok) {
@@ -87,7 +87,6 @@ class PostPublishLogic {
   }
 }
 
-
 function showAlert(message, clearTimeoutMs) {
   const alert = document.querySelector("#alert");
   alert.innerHTML = message;
@@ -100,20 +99,19 @@ function showAlert(message, clearTimeoutMs) {
 }
 
 async function onPostItClicked() {
-  const log = document.getElementById('log');
   const msg = quill.getText();
 
   if (msg) {
     await postPublishLogic
       .postToBluesky(msg)
       .then(result => {
-        log.innerHTML = result.toString();
-        log.innerHTML = JSON.stringify(result);
+        console.debug(result);
+        console.debug(JSON.stringify(result));
         showAlert('Message posted successfully!')
       })
       .catch(error => {
         console.error('Error:', error.message);
-        log.innerHTML = JSON.stringify(error.message);
+        console.error(JSON.stringify(error.message));
       });
   } else {
     console.debug('Enter a message to post!')
@@ -127,7 +125,26 @@ function checkIfPostButtonCanBeEnabled() {
 
 }
 
+function loadStyles() {
+  fetch('/styles.scss')
+    .then(response => response.text())
+    .then(scssContent => {
+      Sass.compile(scssContent, function (result) {
+        if (result.status === 0) {
+          var style = document.createElement('style');
+          style.innerHTML = result.text;
+          document.head.appendChild(style);
+        } else {
+          console.error('Sass compilation error:', result.message);
+        }
+      });
+    })
+    .catch(error => console.error('Error loading SCSS file:', error));
+}
+
 document.addEventListener("DOMContentLoaded", () => {
+  loadStyles();
+
   postPublishLogic = new PostPublishLogic('hktpe.bsky.social', 'rkk3-ohj5-m5py-oets');
 
   const postButton = document.getElementById('post-it');
@@ -155,6 +172,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   checkPostBtnEnable()
-  bskyIdInput.addEventListener('change', checkPostBtnEnable);
-  bskyPasswdInput.addEventListener('change', checkPostBtnEnable);
+  bskyIdInput.addEventListener('input', checkPostBtnEnable);
+  bskyPasswdInput.addEventListener('input', checkPostBtnEnable);
 });

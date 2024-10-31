@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <title>Powder Blue</title>
-    <link href="styles.css" rel="stylesheet">
+    <!-- <link href="styles.css" rel="stylesheet"> -->
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
   </head>
   <body>
@@ -21,38 +21,47 @@
           <div id="post-body"></div>
         </div>
 
-        <div class="credentials">
-          <div class="username">
-            <label for="bsky-id">Bsky Identifier</label>
-            <input
-              type="text"
-              id="bsky-id"
-              name="bsky-id"
-              pattern=".+"
-              placeholder="Enter your Bsky id"
-              required>
-          </div>
+        <fieldset class="social mastodon">
+          <legend>🐘 Mastodon</legend>
+        </fieldset>
 
-          <div class="password">
-            <label for="bsky-passwd">Password</label>
-            <input
-              type="password"
-              id="bsky-passwd"
-              name="bsky-passwd"
-              pattern=".+"
-              placeholder="Enter your password"
-              required>
+        <fieldset class="social bsky">
+          <legend>🦋 Bluesky</legend>
+          <div class="credentials">
+            <div class="username">
+              <label for="bsky-id">Bsky Identifier</label>
+              <input
+                type="text"
+                id="bsky-id"
+                name="bsky-id"
+                pattern="^.+$"
+                placeholder="Enter your Bsky id"
+                required>
+            </div>
+
+            <div class="password">
+              <label for="bsky-passwd">Password</label>
+              <input
+                type="password"
+                id="bsky-passwd"
+                name="bsky-passwd"
+                pattern="^.+$"
+                placeholder="Enter your password"
+                required>
+            </div>
           </div>
+        </fieldset>
+
+        <div class="submit-div">
+          <button
+            id="post-it"
+            class="button"
+            type="button">Post</button>
         </div>
-
-        <button
-          id="post-it"
-          class="button"
-          type="button">Post</button>
       </div>
-      <div id="log"></div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sass.js/0.11.1/sass.min.js"></script>
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     <script type="text/javascript" src="logic.js"></script>
   </body>
