@@ -121,30 +121,7 @@ async function onPostItClicked() {
 let quill;
 let postPublishLogic;
 
-function checkIfPostButtonCanBeEnabled() {
-
-}
-
-function loadStyles() {
-  fetch('/styles.scss')
-    .then(response => response.text())
-    .then(scssContent => {
-      Sass.compile(scssContent, function (result) {
-        if (result.status === 0) {
-          var style = document.createElement('style');
-          style.innerHTML = result.text;
-          document.head.appendChild(style);
-        } else {
-          console.error('Sass compilation error:', result.message);
-        }
-      });
-    })
-    .catch(error => console.error('Error loading SCSS file:', error));
-}
-
 document.addEventListener("DOMContentLoaded", () => {
-  loadStyles();
-
   postPublishLogic = new PostPublishLogic('hktpe.bsky.social', 'rkk3-ohj5-m5py-oets');
 
   const postButton = document.getElementById('post-it');

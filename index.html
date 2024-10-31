@@ -2,9 +2,8 @@
 <html lang="en">
   <head>
     <title>Powder Blue</title>
-    <!-- <link href="styles.css" rel="stylesheet"> -->
+    <link href="styles.css" rel="stylesheet">
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sass.js/0.11.1/sass.min.js"></script>
   </head>
   <body>
     <div class="container">
@@ -24,13 +23,37 @@
 
         <fieldset class="social mastodon">
           <legend>🐘 Mastodon</legend>
+
+          <div class="credentials">
+            <div class="username">
+              <label for="mast-id">Handle</label>
+              <input
+                type="text"
+                id="mast-id"
+                name="mast-id"
+                pattern="^.+$"
+                placeholder="Enter your Bsky id"
+                required>
+            </div>
+
+            <div class="password">
+              <label for="mast-passwd">Password</label>
+              <input
+                type="password"
+                id="mast-passwd"
+                name="mast-passwd"
+                pattern="^.+$"
+                placeholder="Enter your password"
+                required>
+            </div>
+          </div>
         </fieldset>
 
         <fieldset class="social bsky">
           <legend>🦋 Bluesky</legend>
           <div class="credentials">
             <div class="username">
-              <label for="bsky-id">Bsky Identifier</label>
+              <label for="bsky-id">Identifier</label>
               <input
                 type="text"
                 id="bsky-id"

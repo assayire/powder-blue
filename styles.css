@@ -1,7 +1,7 @@
 :root {
   --accent-color: #04aa6d;
   --base-font: 'Roboto Serif', serif;
-  --base-font-size: 20px;
+  --base-font-size: 18px;
 }
 
 * {
@@ -73,6 +73,7 @@ input {
 
 .social {
   margin-block: 25px;
+  border: 1px solid #eee !important;
 }
 
 /* Enable the button when input is valid (not empty) */
